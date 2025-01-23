@@ -10,7 +10,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Verify from './components/Verify';
 import Package from './components/Package';
-import DashBoard from './components/DashBoard';
+
 import Cashout from './components/Cashout';
 import Deposit from './components/Deposit';
 import SendMoney from './components/SendMoney';
@@ -19,6 +19,9 @@ import Trx from './components/Trx';
 import Profile from './components/Profile';
 import Help from './components/Help';
 import Task from './components/Task';
+import DashBoard from './components/DashBoard';
+
+
 function App() {
   const [count, setCount] = useState(0)
 
