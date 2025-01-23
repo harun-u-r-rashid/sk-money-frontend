@@ -16,7 +16,7 @@ import refer from '../assets/hero/refer.png'
 
 import Header from '../base/Header';
 
-function DashBoard() {
+function Dash() {
 
         const [partners, setPartners] = useState([]);
 
@@ -38,8 +38,10 @@ function DashBoard() {
                 fetchPartners();
         }, []);
 
-        return (
 
+
+
+        return (
                 <>
                         <Header />
                         <main>
@@ -352,4 +354,4 @@ function DashBoard() {
         );
 }
 
-export default DashBoard;
+export default Dash;

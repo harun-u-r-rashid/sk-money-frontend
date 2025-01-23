@@ -10,7 +10,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Verify from './components/Verify';
 import Package from './components/Package';
-import DashBoard from './components/DashBoard';
+import Dash from './components/Dash';
 import Cashout from './components/Cashout';
 import Deposit from './components/Deposit';
 import SendMoney from './components/SendMoney';
@@ -32,7 +32,7 @@ function App() {
       <Route path="/register/" element={<Register />} />
       <Route path="/verify/" element={<Verify />} />
       <Route path="/package/" element={<Package />} />
-      <Route path="/dashboard/" element={<DashBoard />} />
+      <Route path="/dashboard/" element={<Dash />} />
       <Route path="/cashout/" element={<Cashout />} />
       <Route path="/send_money/" element={<SendMoney />} />
       
