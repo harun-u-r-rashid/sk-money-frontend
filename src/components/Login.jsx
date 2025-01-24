@@ -42,9 +42,11 @@ function Login() {
     }
     else {
          
-            // https://jwt-auth-u6f9.onrender.com/
+            // https://    https://sk-money-save-u6f9.onrender.com/
             // const res = await axios.post('http://127.0.0.1:8000/auth/login/', logindata)
-            const res = await axios.post('https://jwt-auth-u6f9.onrender.com/account/login/', logindata)
+
+            const res = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/login/', logindata)
+
             const response = res.data
             console.log("response", response)
 
