@@ -16,8 +16,9 @@ function Verify() {
   const handleOtpSubmit = async (e) => {
     e.preventDefault()
     if (otp) {
-  
-            const response = await axios.post('http://127.0.0.1:8000/auth/verify/', { 'otp': otp })
+      // https://sk-money-save-u6f9.onrender.com/
+            // const response = await axios.post('http://127.0.0.1:8000/auth/verify/', { 'otp': otp })
+            const response = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/verify/', { 'otp': otp })
             // const response = await axios.post('https://jwt-auth-u6f9.onrender.com/account/verify/', { 'otp': otp })
             if (response.status === 200) {
                 
@@ -72,7 +73,7 @@ function Verify() {
                     type="submit"
                     class="flex w-full justify-center rounded-md border border-transparent bg-[rgb(33,54,68)] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-90"
                   >
-                    Login
+                    Verify
                   </button>
                 </div>
               </form>
