@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 import { Link, useNavigate } from 'react-router-dom'
@@ -13,24 +13,48 @@ function Header() {
 
 
         const navigate = useNavigate()
-        const access_token = localStorage.getItem('access_token')
-        console.log(access_token)
-        const refresh_token = localStorage.getItem('refresh')
-
         const handleLogout = async () => {
-                const res = await axiosInstance.post('auth/logout/', { refresh_token })
-                if (res.status === 200) {
-                        localStorage.removeItem('access_token')
-                        localStorage.removeItem('refresh_token')
+                try {
 
+                        const access_token = localStorage.getItem('access_token')
+                        const refresh_token = localStorage.getItem('refresh_token')
+                        if (access_token) {
+                                localStorage.removeItem('access_token');
+                                localStorage.removeItem('refresh_token');
+                                Toast().fire({
+                                        icon: "success",
+                                        title: "Logout Successful.",
+                                });
+                                navigate('/');
+                        } else {
+                                console.error("Logout failed:", res.data);
+                                Toast().fire({
+                                        icon: "error",
+                                        title: "Logout failed.",
+                                });
+                        }
+                } catch (error) {
+                        console.error("Logout error:", error);
                         Toast().fire({
-                                icon: "success",
-                                title: "Logout Successful.",
+                                icon: "error",
+                                title: "Logout failed.",
                         });
-                        navigate('/')
-
                 }
-        }
+        };
+
+
+
+
+        const [showBalance, setShowBalance] = useState(false);
+
+        const handleClick = () => {
+                setShowBalance(true); // Show the balance
+                setTimeout(() => {
+                        setShowBalance(false); // Hide the balance after 3 seconds
+                }, 3000);
+        };
+
+
         return (
                 <>
                         <nav class="bg-[rgb(33,54,68)] py-3">
@@ -44,61 +68,50 @@ function Header() {
                                                                 alt="Landwind Logo"
                                                         />
                                                 </a>
-
-                                                <div class="">
-                                                        <h1 class="text-white">harun</h1>
-
-                                                        {/* <!-- Tap to Balance Button --> */}
+                                                <div className=" flex flex-col items-center">
+                                                        <h1 className='text-white font-semibold'>harun</h1>
                                                         <span
-                                                                id="tapToBalance"
-                                                                class="border rounded-full bg-white text-black text-[13px] px-2 cursor-pointer"
+                                                                onClick={handleClick}
+                                                                className="border rounded-full bg-white text-black text-[13px] px-2 cursor-pointer min-w-[70px] text-center"
                                                         >
-                                                                Balance
+                                                                {showBalance ? "100 BDT" : "Balance"}
                                                         </span>
-
-                                                        {/* <!-- Hidden Amount Span --> */}
-                                                        <span
-                                                                id="balanceAmount"
-                                                                class="border rounded-full bg-white text-black text-[13px] px-2 hidden"
-                                                        >
-                                                                100 BDT
-                                                        </span>
-                                                </div>
-                                        </div>
+                                                </div>                             </div>
                                         <div class="flex justify-center items-center">
                                                 <ul class="flex ">
                                                         <Link to='/deposit'>
-                                                        
-                                                        <a href="">
-                                                                <li class="cursor-pointer">
-                                                                        <img
-                                                                                src={depositIcon}
-                                                                                alt="Image 1"
-                                                                                class="w-10 h-10 rounded-full"
-                                                                        />
-                                                                </li>
-                                                        </a>
-                                                        
+
+                                                                <a href="">
+                                                                        <li class="cursor-pointer">
+                                                                                <img
+                                                                                        src={depositIcon}
+                                                                                        alt="Image 1"
+                                                                                        class="w-10 h-10 rounded-full"
+                                                                                />
+                                                                        </li>
+                                                                </a>
+
                                                         </Link>
-                                                        
+
 
                                                         <Link to='/cashout'>
-                                                        
-                                                        <a href="withdraw.html">
-                                                                <li class="cursor-pointer">
-                                                                        <img
-                                                                                src={withdrawIcon}
-                                                                                alt="Image 2"
-                                                                                class="w-10 h-10 rounded-full"
-                                                                        />
-                                                                </li>
-                                                        </a>
-                                                        
+
+                                                                <a href="withdraw.html">
+                                                                        <li class="cursor-pointer">
+                                                                                <img
+                                                                                        src={withdrawIcon}
+                                                                                        alt="Image 2"
+                                                                                        class="w-10 h-10 rounded-full"
+                                                                                />
+                                                                        </li>
+                                                                </a>
+
                                                         </Link>
                                                 </ul>
                                         </div>
                                         <div class="flex items-center lg:order-2">
-                                                <button onClick={handleLogout}>
+                                                {/* onClick={handleLogout} */}
+                                                <button onClick={handleLogout} >
                                                         <i class="text-white text-3xl fa-solid fa-right-from-bracket"></i
                                                         >
                                                 </button>

@@ -13,10 +13,30 @@ import transaction from '../assets/hero/transaction.png'
 import help from '../assets/hero/help.png'
 import task from '../assets/hero/task.png'
 import refer from '../assets/hero/refer.png'
-
 import Header from '../base/Header';
-
+import UserData from '../utils/UserData';
 function Dash() {
+
+        // const user_data = UserData()
+        // console.log(user_data)
+        // console.log(user_data.user_id)
+      
+
+        // const [user, setUser] = useState([])
+
+        // const fetchUserDetails = () => {
+        //         UserData()
+        //                 .get(`auth/user_details/${userId}`)
+        //                 .then((res) => {
+        //                         console.log(res.data)
+        //                         setUser(res.data);
+
+        //                 });
+        // };;
+
+        // useEffect(() => {
+        //         fetchUserDetails();
+        // }, []);
 
         const [partners, setPartners] = useState([]);
 
@@ -37,6 +57,10 @@ function Dash() {
         useEffect(() => {
                 fetchPartners();
         }, []);
+
+
+
+    
 
 
 
