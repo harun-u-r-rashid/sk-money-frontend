@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode';
 import { Link } from 'react-router-dom'
 // Image Import
 import banner1 from '../assets/banner/banner1.png'
@@ -17,27 +18,37 @@ import Header from '../base/Header';
 import UserData from '../utils/UserData';
 function Dash() {
 
-        // const user_data = UserData()
-        // console.log(user_data)
-        // console.log(user_data.user_id)
-      
-
-        // const [user, setUser] = useState([])
 
         // const fetchUserDetails = () => {
-        //         UserData()
-        //                 .get(`auth/user_details/${userId}`)
-        //                 .then((res) => {
-        //                         console.log(res.data)
-        //                         setUser(res.data);
+        //              const access_token = localStorage.getItem('access_token')
 
+        //                 const decode = jwtDecode(access_token)
+        //                 const username = decode.username
+
+        //         // If JWT authentication is needed:
+        //         const token = localStorage.getItem("access_token"); // Replace with your JWT token storage logic
+        //         console.log(token)
+        //         axios
+        //                 .get(`http://127.0.0.1:8000/auth/user_details/${username}/`, {
+        //                         headers: {
+        //                                 'Authorization': `Bearer ${token}`, // Include JWT token if needed
+        //                         }
+        //                 })
+        //                 .then((res) => {
+        //                         console.log(res.data);
+        //                         setUser(res.data);
+        //                 })
+        //                 .catch((err) => {
+        //                         console.error("Error fetching user details", err);
         //                 });
-        // };;
+        // };
 
         // useEffect(() => {
         //         fetchUserDetails();
         // }, []);
 
+
+        const [images, setImages] = useState([]);
         const [partners, setPartners] = useState([]);
 
         const fetchPartners = async () => {
@@ -47,20 +58,33 @@ function Dash() {
                         // const res = await axios.get(`http://127.0.0.1:8000/package/partner_list/`);
                         const res = await axios.get(`https://sk-money-save-u6f9.onrender.com/package/partner_list/`);
                         setPartners(res.data);
-                        console.log(res.data);
+                        // console.log(res.data);
 
                 } catch (error) {
                         console.log(error);
                 }
         };
 
+        const fetchSliderImage = async () => {
+                try {
+                        // const res = await axios.get(`http://127.0.0.1:8000/package/slider_image_list/`);
+                        const res = await axios.get(`https://sk-money-save-u6f9.onrender.com/package/slider_image_list/`);
+                        setImages(res.data)
+                        console.log(res.data)
+                } catch (error) {
+                        console.log(error)
+                }
+
+        }
+
         useEffect(() => {
                 fetchPartners();
+                fetchSliderImage();
         }, []);
 
 
 
-    
+
 
 
 
@@ -75,25 +99,32 @@ function Dash() {
                                                 {/* <!-- Carousel Wrapper --> */}
                                                 <div class="overflow-hidden  ">
                                                         {/* <!-- Carousel --> */}
-                                                        <div class="carousel">
-                                                                {/* <!-- Slide 1 --> */}
-                                                                <div class="carousel-item ">
-                                                                        <img src={banner1} alt="Slide 1" class="w-full h-40" />
 
+                                                        {images?.map((image, index) => (
+
+                                                                <div class="carousel">
+                                                                        {/* <!-- Slide 1 --> */}
+                                                                        <div class="carousel-item ">
+                                                                                <img src={image?.image1} alt="Slide 1" class="w-full h-40" />
+
+                                                                        </div>
+
+                                                                        {/* <!-- Slide 2 --> */}
+                                                                        <div class="carousel-item ">
+                                                                                <img src={image?.image2} alt="Slide 2" class="w-full h-40" />
+
+                                                                        </div>
+
+                                                                        {/* <!-- Slide 3 --> */}
+                                                                        <div class="carousel-item ">
+                                                                                <img src={image?.image3} alt="Slide 3" class="w-full h-40" />
+
+                                                                        </div>
                                                                 </div>
 
-                                                                {/* <!-- Slide 2 --> */}
-                                                                <div class="carousel-item ">
-                                                                        <img src={banner2} alt="Slide 2" class="w-full h-40" />
+                                                        ))}
 
-                                                                </div>
 
-                                                                {/* <!-- Slide 3 --> */}
-                                                                <div class="carousel-item ">
-                                                                        <img src={banner3} alt="Slide 3" class="w-full h-40" />
-
-                                                                </div>
-                                                        </div>
                                                 </div>
                                         </div>
                                 </section>
@@ -105,7 +136,7 @@ function Dash() {
                                                         </div>
 
                                                         <div class="w-full overflow-hidden">
-                                                                <h1 class="marquee text-2xl font-semibold text-white">Welcome to skmoneysaves.com</h1>
+                                                                <h1 class="marquee text-2xl font-semibold text-white">Welcome to skmoneysaves.com (<span className='text-red-600'>Closed : Saturday and Sunday</span>)</h1>
                                                         </div>
                                                 </div>
                                                 <div class=" border border-black mt-5 rounded-md">
@@ -354,6 +385,8 @@ function Dash() {
                                                 <div class="grid grid-cols-4 py-3 gap-2">
 
                                                         {partners?.map((pa, index) => (
+
+
                                                                 <a href="https://en.activtrades.online/" class=" mt-2 text-center">
                                                                         <div>
                                                                                 <div className='flex items-center justify-center w-[50px] h-[50px] mx-auto'>

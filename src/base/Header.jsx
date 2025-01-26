@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { jwtDecode } from 'jwt-decode';
 
 import { Link, useNavigate } from 'react-router-dom'
 import axiosInstance from '../utils/axiosInstance'
@@ -11,6 +12,40 @@ import withdrawIcon from '../assets/icons/withdraw.png'
 
 function Header() {
 
+        const access_token = localStorage.getItem('access_token')
+        // console.log(access_token)
+
+
+        const decode = jwtDecode(access_token)
+        const userId = decode.user_id
+        console.log(userId)
+
+        // console.log(decode)
+
+        const [user, setUser] = useState([])
+
+
+
+        const fetchUserDetails = async () => {
+                try {
+                        // https://sk-money-save-u6f9.onrender.com/
+                        // const res = await axiosInstance.get(`http://127.0.0.1:8000/auth/user_details/${userId}/`);
+
+                        const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/auth/user_details/${userId}/`);
+
+
+                        setUser(res.data);
+                        console.log(res.data);
+
+                } catch (error) {
+                        console.log(error);
+                }
+        };
+
+        useEffect(() => {
+                fetchUserDetails();
+        }, []);
+
 
         const navigate = useNavigate()
         const handleLogout = async () => {
@@ -21,6 +56,9 @@ function Header() {
                         if (access_token) {
                                 localStorage.removeItem('access_token');
                                 localStorage.removeItem('refresh_token');
+                                // localStorage.removeItem('email'),
+                                // localStorage.removeItem('full_name'),
+                                // localStorage.removeItem('username')
                                 Toast().fire({
                                         icon: "success",
                                         title: "Logout Successful.",
@@ -57,68 +95,120 @@ function Header() {
 
         return (
                 <>
-                        <nav class="bg-[rgb(33,54,68)] py-3">
-                                <div
-                                        class="flex flex-wrap items-center justify-between max-w-screen-xl px-1 mx-auto"
-                                >
-                                        <div class="flex items-center gap-2">
-                                                <a href="index.html" class="flex items-center w-[50px] h-[50px]">
-                                                        <img
-                                                                src={sklogo} class="rounded-full border  border-black "
-                                                                alt="Landwind Logo"
-                                                        />
-                                                </a>
-                                                <div className=" flex flex-col items-center">
-                                                        <h1 className='text-white font-semibold'>harun</h1>
-                                                        <span
-                                                                onClick={handleClick}
-                                                                className="border rounded-full bg-white text-black text-[13px] px-2 cursor-pointer min-w-[70px] text-center"
-                                                        >
-                                                                {showBalance ? "100 BDT" : "Balance"}
-                                                        </span>
-                                                </div>                             </div>
-                                        <div class="flex justify-center items-center">
-                                                <ul class="flex ">
-                                                        <Link to='/deposit'>
+                        {user.is_superadmin &&
+                                <nav class="bg-[rgb(33,54,68)] py-3">
+                                        <div
+                                                class="flex flex-wrap items-center justify-between max-w-screen-xl px-1 mx-auto"
+                                        >
+                                                <div class="flex items-center gap-2">
+                                                       
 
-                                                                <a href="">
-                                                                        <li class="cursor-pointer">
-                                                                                <img
-                                                                                        src={depositIcon}
-                                                                                        alt="Image 1"
-                                                                                        class="w-10 h-10 rounded-full"
-                                                                                />
-                                                                        </li>
-                                                                </a>
+                                                                <div class="flex items-center w-[50px] h-[50px]">
+
+                                                                        <img
+                                                                                src={sklogo} class="rounded-full border  border-black "
+                                                                                alt="Landwind Logo"
+                                                                        />
+                                                                </div>
+
+                                                       
+                                                </div>
+
+                                                <div class="flex justify-center items-center  text-white p-2 bg-red-700 rounded-md">
+                                                 <Link to="/admin_dashboard">
+
+                                                 <span>Admin Dashboard</span>
+                                                 
+                                                 </Link>
+                                                </div>
+
+                                                <div class="flex items-center lg:order-2">
+                                                        {/* onClick={handleLogout} */}
+                                                        <button onClick={handleLogout} >
+                                                                <i class="text-white text-3xl fa-solid fa-right-from-bracket"></i
+                                                                >
+                                                        </button>
+
+                                                </div>
+                                        </div>
+                                </nav>
+
+
+                        }
+
+
+                        {!user.is_superadmin &&
+
+
+                                <nav class="bg-[rgb(33,54,68)] py-3">
+                                        <div
+                                                class="flex flex-wrap items-center justify-between max-w-screen-xl px-1 mx-auto"
+                                        >
+                                                <div class="flex items-center gap-2">
+                                                        <Link>
+
+                                                                <div class="flex items-center w-[50px] h-[50px]">
+
+                                                                        <img
+                                                                                src={sklogo} class="rounded-full border  border-black "
+                                                                                alt="Landwind Logo"
+                                                                        />
+                                                                </div>
 
                                                         </Link>
+                                                        <div className=" flex flex-col items-center">
+                                                                <h1 className='text-white font-semibold'>{user?.username}</h1>
+                                                                <span
+                                                                        onClick={handleClick}
+                                                                        className="border rounded-full bg-white text-black text-[13px] px-2 cursor-pointer min-w-[70px] text-center"
+                                                                >
+                                                                        {showBalance ? <span>{user.balance}$</span> : "Balance"}
+                                                                </span>
+                                                        </div>                             </div>
+                                                <div class="flex justify-center items-center">
+                                                        <ul class="flex ">
+                                                                <Link to='/deposit'>
+
+                                                                        <a href="">
+                                                                                <li class="cursor-pointer">
+                                                                                        <img
+                                                                                                src={depositIcon}
+                                                                                                alt="Image 1"
+                                                                                                class="w-10 h-10 rounded-full"
+                                                                                        />
+                                                                                </li>
+                                                                        </a>
+
+                                                                </Link>
 
 
-                                                        <Link to='/cashout'>
+                                                                <Link to='/cashout'>
 
-                                                                <a href="withdraw.html">
-                                                                        <li class="cursor-pointer">
-                                                                                <img
-                                                                                        src={withdrawIcon}
-                                                                                        alt="Image 2"
-                                                                                        class="w-10 h-10 rounded-full"
-                                                                                />
-                                                                        </li>
-                                                                </a>
+                                                                        <a href="withdraw.html">
+                                                                                <li class="cursor-pointer">
+                                                                                        <img
+                                                                                                src={withdrawIcon}
+                                                                                                alt="Image 2"
+                                                                                                class="w-10 h-10 rounded-full"
+                                                                                        />
+                                                                                </li>
+                                                                        </a>
 
-                                                        </Link>
-                                                </ul>
+                                                                </Link>
+                                                        </ul>
+                                                </div>
+                                                <div class="flex items-center lg:order-2">
+                                                        {/* onClick={handleLogout} */}
+                                                        <button onClick={handleLogout} >
+                                                                <i class="text-white text-3xl fa-solid fa-right-from-bracket"></i
+                                                                >
+                                                        </button>
+
+                                                </div>
                                         </div>
-                                        <div class="flex items-center lg:order-2">
-                                                {/* onClick={handleLogout} */}
-                                                <button onClick={handleLogout} >
-                                                        <i class="text-white text-3xl fa-solid fa-right-from-bracket"></i
-                                                        >
-                                                </button>
+                                </nav>
 
-                                        </div>
-                                </div>
-                        </nav>
+                        }
                 </>
         );
 }

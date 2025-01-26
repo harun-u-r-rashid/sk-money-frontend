@@ -1,7 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react';
+import { jwtDecode } from 'jwt-decode';
+import { Link } from 'react-router-dom';
+import axiosInstance from '../utils/axiosInstance'
+import { use } from 'react';
+
 function Profile() {
+
+        const access_token = localStorage.getItem('access_token')
+        // console.log(access_token)
+
+
+        const decode = jwtDecode(access_token)
+        const userId = decode.user_id
+        console.log(userId)
+
+        // console.log(decode)
+
+        const [user, setUser] = useState([])
+
+   
+        const fetchUserDetails = async () => {
+                try {
+                        // https://sk-money-save-u6f9.onrender.com/
+                        // const res = await axiosInstance.get(`http://127.0.0.1:8000/auth/user_details/${userId}/`);
+                        const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/auth/user_details/${userId}/`);
+                        setUser(res.data);
+                        console.log(res.data);
+
+                } catch (error) {
+                        console.log(error);
+                }
+        };
+
+        useEffect(() => {
+                fetchUserDetails();
+        }, []);
+
         return (
+
+
+   
+
                 <>
 
                         <nav class="bg-[rgb(33,54,68)] py-3">
@@ -42,7 +81,7 @@ function Profile() {
                                                                                 <i class="text-white fa-solid fa-signature"></i>
                                                                         </div>
                                                                         <h1>Name: </h1>
-                                                                        <p>Harunur Rashid</p>
+                                                                        <p>{user?.username}</p>
                                                                 </div>
                                                                 <hr />
 
@@ -51,58 +90,70 @@ function Profile() {
                                                                                 <i class="text-white fa-solid fa-phone"></i>
                                                                         </div>
                                                                         <h1>Phone: </h1>
-                                                                        <p>01609480869</p>
+                                                                        <p>{user?.phone}</p>
                                                                 </div>
                                                                 <hr />
 
                                                                 <div class="flex font-bold items-center justify-start gap-2 my-2">
                                                                         <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
-                                                                                <i class="text-white fa-solid fa-bangladeshi-taka-sign"></i>
+                                                                             
+                                                                        <i class="text-white fa-solid fa-dollar-sign"></i>
                                                                         </div>
                                                                         <h1>Main Balance: </h1>
-                                                                        <p>300 BDT</p>
+                                                                        <p>{user?.balance} $</p>
                                                                 </div>
                                                                 <hr />
                                                                 <div class="flex font-bold items-center justify-start gap-2 my-2">
                                                                         <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
-                                                                                <i class="text-white fa-solid fa-bangladeshi-taka-sign"></i>
+                                                                                
+                                                                        <i class="text-white fa-solid fa-dollar-sign"></i>
                                                                         </div>
-                                                                        <h1>Deposit Balance: </h1>
-                                                                        <p>300 BDT</p>
+                                                                        <h1>Deposit: </h1>
+                                                                        <p>300 $</p>
                                                                 </div>
                                                                 <hr />
+
                                                                 <div class="flex font-bold items-center justify-start gap-2 my-2">
+                                                                        <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
+                                                                               
+                                                                                <i class="text-white fa-solid fa-dollar-sign"></i>
+                                                                        </div>
+                                                                        <h1>Profit: </h1>
+                                                                        <p>{user?.profit} $</p>
+                                                                </div>
+                                                                <hr />
+                                                                {/* <div class="flex font-bold items-center justify-start gap-2 my-2">
                                                                         <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
                                                                                 <i class="text-white fa-solid fa-box"></i>
                                                                         </div>
                                                                         <h1>Package: </h1>
                                                                         <p>No Package</p>
                                                                 </div>
-                                                                <hr />
+                                                                <hr /> */}
                                                                 <div class="flex font-bold items-center justify-start gap-2 my-2">
                                                                         <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
                                                                                 <i class="text-white fa-solid fa-users-between-lines"></i>
                                                                         </div>
                                                                         <h1>Refer Code: </h1>
-                                                                        <p>harun</p>
+                                                                        <p>{user?.username}</p>
                                                                 </div>
                                                                 <hr />
-                                                                <div class="flex font-bold items-center justify-start gap-2 my-2">
+                                                                {/* <div class="flex font-bold items-center justify-start gap-2 my-2">
                                                                         <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
                                                                                 <i class="text-white fa-solid fa-users-between-lines"></i>
                                                                         </div>
                                                                         <h1>Total Refer: </h1>
                                                                         <p>0</p>
                                                                 </div>
-                                                                <hr />
+                                                                <hr /> */}
 
-                                                                <div class="flex font-bold items-center justify-start gap-2 my-2">
+                                                                {/* <div class="flex font-bold items-center justify-start gap-2 my-2">
                                                                         <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
                                                                                 <i class="text-white fa-solid fa-solid fa-list-check"></i>
                                                                         </div>
                                                                         <h1>Task: </h1>
                                                                         <p>0</p>
-                                                                </div>
+                                                                </div> */}
 
 
                                                         </div>

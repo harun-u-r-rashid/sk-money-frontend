@@ -20,8 +20,8 @@ function Package() {
     try {
 
       // https://sk-money-save-u6f9.onrender.com/
-      // const res = await axios.get(`http://127.0.0.1:8000/package/list/`);
-            const res = await axios.get(`https://sk-money-save-u6f9.onrender.com/package/list/`);
+      const res = await axios.get(`http://127.0.0.1:8000/package/list/`);
+            // const res = await axios.get(`https://sk-money-save-u6f9.onrender.com/package/list/`);
       setPackages(res.data);
       console.log(res.data);
 
@@ -64,6 +64,8 @@ function Package() {
 
           {packages?.map((p, index) => (
 
+          
+
             <div class="bg-white rounded-xl shadow-md overflow-hidden">
               <div class="relative">
                 <img
@@ -87,7 +89,10 @@ function Package() {
                 <div
                   class="border mt-2 text-center text-white py-2 rounded-xl bg-[rgb(33,54,68)]"
                 >
-                  <button>BUY NOW</button>
+                <Link to="/deposit">
+                
+                <button>BUY NOW</button>
+                </Link>
                 </div>
               </div>
             </div>

@@ -18,6 +18,7 @@ function Register() {
     email: '',
     full_name: '',
     phone:'',
+    bkash_number: '',
     password: '',
     confirm_password: ''
   });
@@ -32,9 +33,9 @@ function Register() {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, email, full_name,phone, password, confirm_password } = formdata;
+    const { username, email, full_name,phone,bkash_number, password, confirm_password } = formdata;
 
-    if (!username|| !email || !full_name || !phone || !password || !confirm_password) {
+    if (!username|| !email || !full_name || !phone || !bkash_number|| !password || !confirm_password) {
       
         Toast().fire({
           icon: "error",
@@ -50,7 +51,7 @@ const handleSubmit = async (e) => {
     } else {
        
         try {
-            console.log("Request Payload: ", formdata); 
+            // console.log("Request Payload: ", formdata); 
             // https://sk-money-save-u6f9.onrender.com/
             // const res = await axios.post("http://127.0.0.1:8000/auth/register/", formdata);
             const res = await axios.post("https://sk-money-save-u6f9.onrender.com/auth/register/", formdata);
@@ -68,14 +69,14 @@ const handleSubmit = async (e) => {
         } catch (error) {
           Toast().fire({
             icon: "error",
-            title: "Something went wrong. Username & email must be unique",
+            title: error.response?.data?.message || "Registration failed. Username & email must be unique.",
           });
       }
       
     }
 };
 
-const {username,full_name, email,  phone, password, confirm_password } = formdata;
+const {username,full_name, email,  phone, bkash_number, password, confirm_password } = formdata;
 
 
 
@@ -133,6 +134,16 @@ const {username,full_name, email,  phone, password, confirm_password } = formdat
                     required
                     class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm text-black sm:text-sm"
                     placeholder="Phone" value={phone} onChange={handleOnChange}
+                  />
+                </div>
+
+                <div class="mt-1 pb-4">
+                  <input
+                    name="bkash_number"
+                    type="text"
+                    required
+                    class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm text-black sm:text-sm"
+                    placeholder="Bkash Number" value={bkash_number} onChange={handleOnChange}
                   />
                 </div>
 

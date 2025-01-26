@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
+import { jwtDecode } from 'jwt-decode';
 import Header from '../base/Header';
 
 // Image Import
@@ -30,49 +30,60 @@ function Login() {
   const handleLogin = (e) => {
     setLoginData({ ...logindata, [e.target.name]: e.target.value })
   }
- 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const { email, password } = logindata
     if (!email || !password) {
-            setError("Email and password are required!")
+      setError("Email and password are required!")
 
 
     }
     else {
-         
-            // https://    https://sk-money-save-u6f9.onrender.com/
-            // const res = await axios.post('http://127.0.0.1:8000/auth/login/', logindata)
 
-            const res = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/login/', logindata)
+      // https://    https://sk-money-save-u6f9.onrender.com/
+      // const res = await axios.post('http://127.0.0.1:8000/auth/login/', logindata)
 
-            const response = res.data
-            console.log("response", response)
+      const res = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/login/', logindata)
 
-
-     
+      const response = res.data
+      console.log(res.data)
 
 
-            if (res.status === 200) {
-                    // localStorage.setItem("user", JSON.stringify(user))
-                    localStorage.setItem('access_token', JSON.stringify(response.access_token))
-                    localStorage.setItem('refresh_token', JSON.stringify(response.refresh_token))
 
-                    Toast().fire({
-                      icon: "success",
-                      title: "Welcome to SK Saving Money.",
-                    });
-                    navigate("/dashboard");
 
-                    
-                    // toast.success("login successfull")
-                    
 
-            }
+      if (res.status === 200) {
+        localStorage.setItem('access_token', response.access_token)
+        localStorage.setItem('refresh_token', response.refresh_token)
+
+        // const decode = jwtDecode(res.data.access_token)
+        // console.log(decode)
+
+        // const isActive = decode.is_active
+        // const isSuperUser = decode.is_superuser
+        // console.log(decode.is_active)
+        // console.log(decode.is_superuser)
+
+
+
+        Toast().fire({
+          icon: "success",
+          title: "Welcome to SK Saving Money.",
+        });
+
+        navigate("/dashboard");
+          
+
+
+        // toast.success("login successfull")
+
+
+      }
     }
 
-}
+  }
 
   return (
     <>
@@ -90,7 +101,7 @@ function Login() {
                 alt=""
               />
 
-{/* onSubmit={handleSubmit} */}
+              {/* onSubmit={handleSubmit} */}
 
               <form class="mt-5" method="POST" onSubmit={handleSubmit} >
 
@@ -101,7 +112,7 @@ function Login() {
                     name="email"
                     required
                     class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm sm:text-sm text-black"
-                    placeholder="Email"  value={logindata.email} onChange={handleLogin}
+                    placeholder="Email" value={logindata.email} onChange={handleLogin}
                   />
                   {/* onChange={(e) => setEmail(e.target.value)} */}
                 </div>
@@ -112,8 +123,8 @@ function Login() {
                     type="password"
                     required
                     class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm sm:text-sm text-black"
-                    placeholder="Password"  value={logindata.password} onChange={handleLogin}
-                    // onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password" value={logindata.password} onChange={handleLogin}
+                  // onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 

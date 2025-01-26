@@ -19,7 +19,8 @@ import Trx from './components/Trx';
 import Profile from './components/Profile';
 import Help from './components/Help';
 import Task from './components/Task';
-
+import AdminDash from './components/AdminDash';
+import UpdateStatus from './components/UpdateStatus';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -44,6 +45,9 @@ function App() {
 
       <Route path="/help/" element={<Help />} />
       <Route path="/task/" element={<Task />} />
+      <Route path="/admin_dashboard/" element={<AdminDash />} />
+      <Route path="/update_status/:pk/" element={<UpdateStatus  />} />
+      
       
       
     </Routes>
