@@ -17,8 +17,8 @@ function AdminDash() {
             try {
 
                   // https://sk-money-save-u6f9.onrender.com/
-                  const res = await axiosInstance.get(`http://127.0.0.1:8000/package/deposit_history/all/`);
-                  // const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/deposit_history/all/`);
+                  // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/deposit_history/all/`);
+                  const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/deposit_history/all/`);
                   setHistories(res.data);
                   // console.log(res.data);
 
