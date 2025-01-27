@@ -8,15 +8,14 @@ import axiosInstance from '../utils/axiosInstance';
 function Trx() {
 
         const access_token = localStorage.getItem('access_token')
-        // console.log(access_token)
+   
         const decoded = jwtDecode(access_token)
         const userId = decoded.user_id
         console.log(userId)
-        // console.log(decoded)
-
+    
         const [history, setHistory] = useState([]);
 
-        const [withdrawHistory, setWithdrawHistory] = useState([]);
+        // const [withdrawHistory, setWithdrawHistory] = useState([]);
 
         const fetchDepositHistory = async () => {
                 try {
@@ -32,22 +31,22 @@ function Trx() {
         };
 
 
-        const fetchWithdrawHistory = async () => {
-                try {
-                        // https://sk-money-save-u6f9.onrender.com/
-                        // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/withdraw_history/`);
-                        const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/withdraw_history/`);
-                        setHistory(res.data);
-                        console.log(res.data);
+        // const fetchWithdrawHistory = async () => {
+        //         try {
+        //                 // https://sk-money-save-u6f9.onrender.com/
+        //                 // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/withdraw_history/`);
+        //                 const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/withdraw_history/`);
+        //                 setHistory(res.data);
+        //                 console.log(res.data);
 
-                } catch (error) {
-                        console.log(error);
-                }
-        };
+        //         } catch (error) {
+        //                 console.log(error);
+        //         }
+        // };
 
         useEffect(() => {
                 fetchDepositHistory();
-                fetchWithdrawHistory()
+                // fetchWithdrawHistory()
         }, []);
 
         return (
@@ -116,7 +115,7 @@ function Trx() {
 
                                       
                                         
-                                        
+{/*                                         
                                           <div class="max-w-7xl mx-auto rounded-lg shadow-lg mt-5  flex flex-col gap-2">
 
                                                 <h1>Your all withdraw request</h1>
@@ -153,7 +152,7 @@ function Trx() {
 
 
 
-                                        </div>
+                                        </div> */}
 
 
                                         
