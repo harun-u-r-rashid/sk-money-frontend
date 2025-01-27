@@ -24,7 +24,7 @@ function Cashout() {
     // https://sk-money-save-u6f9.onrender.com/
     try {
       // const res = await axiosInstance.post("http://127.0.0.1:8000/package/withdraw_create/", {
-        const res = await axios.post("https://sk-money-save-u6f9.onrender.com/package/withdraw_create/", {
+        const res = await axiosInstance.post("https://sk-money-save-u6f9.onrender.com/package/withdraw_create/", {
         user: userId,
         amount: parseInt(amount),
         b_number: bnumber,

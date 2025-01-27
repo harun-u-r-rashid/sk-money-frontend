@@ -123,7 +123,7 @@ function Profile() {
                                                                                 <i class="text-white fa-solid fa-dollar-sign"></i>
                                                                         </div>
                                                                         <h1>Profit: </h1>
-                                                                        <p>{user?.profit} $</p>
+                                                                        <p>{user?.profit} Tk</p>
                                                                 </div>
                                                                 <hr />
                                                                 {/* <div class="flex font-bold items-center justify-start gap-2 my-2">

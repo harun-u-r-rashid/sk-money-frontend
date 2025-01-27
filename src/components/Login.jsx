@@ -34,13 +34,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const { email, password } = logindata
-    if (!email || !password) {
-      setError("Email and password are required!")
-
-
-    }
-    else {
+    try {
 
       // https://    https://sk-money-save-u6f9.onrender.com/
       // const res = await axios.post('http://127.0.0.1:8000/auth/login/', logindata)
@@ -74,13 +68,15 @@ function Login() {
         });
 
         navigate("/dashboard");
-          
-
-
-        // toast.success("login successfull")
 
 
       }
+    } catch (error) {
+      Toast().fire({
+        icon: "error",
+        title: "Invalid user. Use correct email and password",
+      });
+
     }
 
   }
