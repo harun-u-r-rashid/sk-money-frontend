@@ -18,7 +18,7 @@ function Header() {
 
         const decode = jwtDecode(access_token)
         const userId = decode.user_id
-        console.log(userId)
+        // console.log(userId)
 
         // console.log(decode)
 
@@ -35,7 +35,7 @@ function Header() {
 
 
                         setUser(res.data);
-                        console.log(res.data);
+                        // console.log(res.data);
 
                 } catch (error) {
                         console.log(error);
@@ -56,9 +56,7 @@ function Header() {
                         if (access_token) {
                                 localStorage.removeItem('access_token');
                                 localStorage.removeItem('refresh_token');
-                                // localStorage.removeItem('email'),
-                                // localStorage.removeItem('full_name'),
-                                // localStorage.removeItem('username')
+                          
                                 Toast().fire({
                                         icon: "success",
                                         title: "Logout Successful.",

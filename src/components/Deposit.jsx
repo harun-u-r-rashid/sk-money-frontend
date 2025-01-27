@@ -5,6 +5,7 @@ import { Link, UNSAFE_ErrorResponseImpl } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios'
 import Toast from '../plugin/Toast';
+import axiosInstance from '../utils/axiosInstance';
 function Deposit() {
 
   const access_token = localStorage.getItem("access_token")
@@ -22,8 +23,8 @@ function Deposit() {
     e.preventDefault();
     // https://sk-money-save-u6f9.onrender.com/
     try {
-      // const res = await axios.post("http://127.0.0.1:8000/package/deposit_create/", {
-        const res = await axios.post("https://sk-money-save-u6f9.onrender.com/package/deposit_create/", {
+      // const res = await axiosInstance.post("http://127.0.0.1:8000/package/deposit_create/", {
+        const res = await axiosInstance.post("https://sk-money-save-u6f9.onrender.com/package/deposit_create/", {
         user: userId,
         amount: parseInt(amount),
         tran_id: tranId
@@ -76,7 +77,7 @@ function Deposit() {
         <section class=" mx-2 pb-3">
           <div class="max-w-7xl mx-auto py-6 border text-center mt-5 rounded-2xl bg-white ">
 
-            <h1 class="text-2xl">
+            <h1 class="text-2xl px-1">
               <span className='text-blue-600 font-bold'>
                 Notice :
               </span> Minimum Deposit <span cla>100$</span>

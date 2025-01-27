@@ -16,36 +16,11 @@ import task from '../assets/hero/task.png'
 import refer from '../assets/hero/refer.png'
 import Header from '../base/Header';
 import UserData from '../utils/UserData';
+import axiosInstance from '../utils/axiosInstance';
 function Dash() {
 
 
-        // const fetchUserDetails = () => {
-        //              const access_token = localStorage.getItem('access_token')
 
-        //                 const decode = jwtDecode(access_token)
-        //                 const username = decode.username
-
-        //         // If JWT authentication is needed:
-        //         const token = localStorage.getItem("access_token"); // Replace with your JWT token storage logic
-        //         console.log(token)
-        //         axios
-        //                 .get(`http://127.0.0.1:8000/auth/user_details/${username}/`, {
-        //                         headers: {
-        //                                 'Authorization': `Bearer ${token}`, // Include JWT token if needed
-        //                         }
-        //                 })
-        //                 .then((res) => {
-        //                         console.log(res.data);
-        //                         setUser(res.data);
-        //                 })
-        //                 .catch((err) => {
-        //                         console.error("Error fetching user details", err);
-        //                 });
-        // };
-
-        // useEffect(() => {
-        //         fetchUserDetails();
-        // }, []);
 
 
         const [images, setImages] = useState([]);
@@ -55,8 +30,8 @@ function Dash() {
                 try {
 
                         // https://sk-money-save-u6f9.onrender.com/
-                        // const res = await axios.get(`http://127.0.0.1:8000/package/partner_list/`);
-                        const res = await axios.get(`https://sk-money-save-u6f9.onrender.com/package/partner_list/`);
+                        // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/partner_list/`);
+                        const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/partner_list/`);
                         setPartners(res.data);
                         // console.log(res.data);
 
@@ -67,8 +42,8 @@ function Dash() {
 
         const fetchSliderImage = async () => {
                 try {
-                        // const res = await axios.get(`http://127.0.0.1:8000/package/slider_image_list/`);
-                        const res = await axios.get(`https://sk-money-save-u6f9.onrender.com/package/slider_image_list/`);
+                        // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/slider_image_list/`);
+                        const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/slider_image_list/`);
                         setImages(res.data)
                         console.log(res.data)
                 } catch (error) {
@@ -135,9 +110,12 @@ function Dash() {
                                                                 <i class="px-3  text-2xl  fa-solid fa-bell bell-animation"></i>
                                                         </div>
 
-                                                        <div class="w-full overflow-hidden">
-                                                                <h1 class="marquee text-2xl font-semibold text-white">Welcome to skmoneysaves.com (<span className='text-red-600'>Closed : Saturday and Sunday</span>)</h1>
+                                                        <div className="marquee-container">
+                                                                <h1 className="marquee text-xl font-semibold text-white">
+                                                                        Welcome to skmoneysaves.com (<span className="text-red-600">Closed : Saturday and Sunday</span>)
+                                                                </h1>
                                                         </div>
+
                                                 </div>
                                                 <div class=" border border-black mt-5 rounded-md">
                                                         <h1 class="p-3 text-[rgb(33,54,68)] text-xl font-bold">sk money saves</h1>
@@ -186,7 +164,7 @@ function Dash() {
                                                                                                         <img className='bell-animation' src={cashout} alt="" />
                                                                                                 </div>
                                                                                                 <p class="text-sm font-medium capitalize text-black lg:text-lg md:text-base">
-                                                                                                        Cashout
+                                                                                                        Withdraw
                                                                                                 </p>
                                                                                         </div>
                                                                                 </a>

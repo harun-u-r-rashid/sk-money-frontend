@@ -85,12 +85,23 @@ function Profile() {
                                                                 </div>
                                                                 <hr />
 
+                                                       
+
                                                                 <div class="flex font-bold items-center justify-start gap-2 my-2">
                                                                         <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
                                                                                 <i class="text-white fa-solid fa-phone"></i>
                                                                         </div>
                                                                         <h1>Phone: </h1>
                                                                         <p>{user?.phone}</p>
+                                                                </div>
+                                                                <hr />
+
+                                                                <div class="flex font-bold items-center justify-start gap-2 my-2">
+                                                                        <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
+                                                                                <i class="text-white fa-solid fa-phone"></i>
+                                                                        </div>
+                                                                        <h1>Bkash : </h1>
+                                                                        <p>{user?.bkash_number}</p>
                                                                 </div>
                                                                 <hr />
 
@@ -103,14 +114,7 @@ function Profile() {
                                                                         <p>{user?.balance} $</p>
                                                                 </div>
                                                                 <hr />
-                                                                <div class="flex font-bold items-center justify-start gap-2 my-2">
-                                                                        <div class="border bg-[rgb(33,54,68)] w-10 h-10 flex items-center justify-center  p-2 rounded-full ">
-                                                                                
-                                                                        <i class="text-white fa-solid fa-dollar-sign"></i>
-                                                                        </div>
-                                                                        <h1>Deposit: </h1>
-                                                                        <p>300 $</p>
-                                                                </div>
+                                                  
                                                                 <hr />
 
                                                                 <div class="flex font-bold items-center justify-start gap-2 my-2">

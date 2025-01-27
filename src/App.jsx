@@ -8,12 +8,12 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import Login from './components/Login';
 import Register from './components/Register';
-import Verify from './components/Verify';
+// import Verify from './components/Verify';
 import Package from './components/Package';
 import Dash from './components/Dash';
 import Cashout from './components/Cashout';
 import Deposit from './components/Deposit';
-import SendMoney from './components/SendMoney';
+// import SendMoney from './components/SendMoney';
 import Refer from './components/Refer';
 import Trx from './components/Trx';
 import Profile from './components/Profile';
@@ -21,7 +21,7 @@ import Help from './components/Help';
 import Task from './components/Task';
 import AdminDash from './components/AdminDash';
 import UpdateStatus from './components/UpdateStatus';
-
+import UpdateWithdraw from './components/UpdateWithdraw';
 function App() {
   const [count, setCount] = useState(0)
 
@@ -31,11 +31,11 @@ function App() {
     <Route path="/" element={<Login />} />
  
       <Route path="/register/" element={<Register />} />
-      <Route path="/verify/" element={<Verify />} />
+      {/* <Route path="/verify/" element={<Verify />} /> */}
       <Route path="/package/" element={<Package />} />
       <Route path="/dashboard/" element={<Dash />} />
       <Route path="/cashout/" element={<Cashout />} />
-      <Route path="/send_money/" element={<SendMoney />} />
+      {/* <Route path="/send_money/" element={<SendMoney />} /> */}
       
       <Route path="/deposit/" element={<Deposit />} />
   
@@ -47,6 +47,7 @@ function App() {
       <Route path="/task/" element={<Task />} />
       <Route path="/admin_dashboard/" element={<AdminDash />} />
       <Route path="/update_status/:pk/" element={<UpdateStatus  />} />
+      <Route path="/update_withdraw_status/:pk/" element={<UpdateWithdraw  />} />
       
       
       

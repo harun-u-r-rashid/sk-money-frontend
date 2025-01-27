@@ -17,7 +17,7 @@ function Register() {
     username: '',
     email: '',
     full_name: '',
-    phone:'',
+    phone: '',
     bkash_number: '',
     password: '',
     confirm_password: ''
@@ -26,57 +26,57 @@ function Register() {
 
   const handleOnChange = (e) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
-};
+  };
 
 
 
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, email, full_name,phone,bkash_number, password, confirm_password } = formdata;
+    const { username, email, full_name, phone, bkash_number, password, confirm_password } = formdata;
 
-    if (!username|| !email || !full_name || !phone || !bkash_number|| !password || !confirm_password) {
-      
-        Toast().fire({
-          icon: "error",
-          title: "All fields are required!",
-        });
-   
+    if (!username || !email || !full_name || !phone || !bkash_number || !password || !confirm_password) {
+
+      Toast().fire({
+        icon: "error",
+        title: "All fields are required!",
+      });
+
     } else if (password !== confirm_password) {
       Toast().fire({
         icon: "error",
         title: "Password doesn't match.",
       });
-    
+
     } else {
-       
-        try {
-            // console.log("Request Payload: ", formdata); 
-            // https://sk-money-save-u6f9.onrender.com/
-            // const res = await axios.post("http://127.0.0.1:8000/auth/register/", formdata);
-            const res = await axios.post("https://sk-money-save-u6f9.onrender.com/auth/register/", formdata);
-            const response = res.data;
-            console.log("Response: ", response); 
 
-            if (res.status === 201) {
-              Toast().fire({
-                icon: "success",
-                title: "Registration Successful. Check your email for email verification.",
-              });
-                navigate("/verify"); 
-               
-            }
-        } catch (error) {
+      try {
+        // console.log("Request Payload: ", formdata); 
+        // https://sk-money-save-u6f9.onrender.com/
+        // const res = await axios.post("http://127.0.0.1:8000/auth/register/", formdata);
+        const res = await axios.post("https://sk-money-save-u6f9.onrender.com/auth/register/", formdata);
+        const response = res.data;
+        console.log("Response: ", response);
+
+        if (res.status === 201) {
           Toast().fire({
-            icon: "error",
-            title: error.response?.data?.message || "Registration failed. Username & email must be unique.",
+            icon: "success",
+            title: res.data.message,
           });
-      }
-      
-    }
-};
+          navigate("/");
 
-const {username,full_name, email,  phone, bkash_number, password, confirm_password } = formdata;
+        }
+      } catch (error) {
+        Toast().fire({
+          icon: "error",
+          title: error.response?.data?.message || "Registration failed. Username & email must be unique.",
+        });
+      }
+
+    }
+  };
+
+  const { username, full_name, email, phone, bkash_number, password, confirm_password } = formdata;
 
 
 
@@ -102,7 +102,7 @@ const {username,full_name, email,  phone, bkash_number, password, confirm_passwo
                     type="text"
                     required
                     class="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm sm:text-sm text-black"
-                    placeholder="Username"  value={username} onChange={handleOnChange}
+                    placeholder="Username" value={username} onChange={handleOnChange}
                   />
                 </div>
 
@@ -147,7 +147,7 @@ const {username,full_name, email,  phone, bkash_number, password, confirm_passwo
                   />
                 </div>
 
-    
+
 
                 <div class="mt-1 pb-4">
                   <input

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance';
 import {Link} from 'react-router-dom'
 
 
@@ -20,8 +20,8 @@ function Package() {
     try {
 
       // https://sk-money-save-u6f9.onrender.com/
-      const res = await axios.get(`http://127.0.0.1:8000/package/list/`);
-            // const res = await axios.get(`https://sk-money-save-u6f9.onrender.com/package/list/`);
+      // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/list/`);
+            const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/list/`);
       setPackages(res.data);
       console.log(res.data);
 
@@ -76,10 +76,13 @@ function Package() {
               </div>
               <div class="p-4">
                 <div
-                  class="flex items-center justify-between text-lg font-medium text-gray-800 mb-2"
+                  class="flex items-center justify-between  text-lg font-medium text-gray-800 mb-2"
                 >
                   <h1>{p?.title}</h1>
-                  <h1>{p?.price} BDT</h1>
+                  <div className='flex flex-col gap-1'>
+                  <h1 className='mx-auto'>{p?.price} $</h1>
+                  <h1 className='border bg-black text-white px-2 rounded-md'>{p?.price_taka} Tk.</h1>
+                  </div>
                 </div>
                 <hr />
                 <p class="text-gray-500 text-sm mt-2">

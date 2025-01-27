@@ -17,8 +17,8 @@ function Verify() {
     e.preventDefault()
     if (otp) {
       // https://sk-money-save-u6f9.onrender.com/
-            // const response = await axios.post('http://127.0.0.1:8000/auth/verify/', { 'otp': otp })
-            const response = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/verify/', { 'otp': otp })
+            const response = await axios.post('http://127.0.0.1:8000/auth/verify/', { 'otp': otp })
+            // const response = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/verify/', { 'otp': otp })
             
             if (response.status === 200) {
                 
