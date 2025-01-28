@@ -42,7 +42,7 @@ function Login() {
       const res = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/login/', logindata)
 
       const response = res.data
-      console.log(res.data)
+      // console.log(res.data)
 
 
 

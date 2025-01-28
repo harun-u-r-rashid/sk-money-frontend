@@ -27,7 +27,7 @@ function Cashout() {
         const res = await axiosInstance.post("https://sk-money-save-u6f9.onrender.com/package/withdraw_create/", {
         user: userId,
         amount: parseInt(amount),
-        b_number: bnumber,
+        bkash_number: bnumber,
         msg: message
       });
 
@@ -77,10 +77,10 @@ function Cashout() {
         <section class="mx-2">
           <div class="max-w-7xl mx-auto py-6 border text-center mt-5 rounded-2xl bg-white ">
 
-            <h1 class="text-2xl px-1">
+            <h1 class="text-xl">
               <span className='text-blue-600 font-bold'>
-                Notice :
-              </span> Minimum withdraw <span cla>100$</span>. You will get the withdraw balance within 4 hours.
+              নোটিশ :
+              </span> মিনিমাম উইথড্র ১৩০০০ টাকা। উইথড্রের রিকুয়েষ্ট পাঠানোর পর, বিকাশ নম্বর, এমাউন্ট এবং ম্যাসেজের মাধ্যমে  নিচের উইথড্র ফর্ম পূরণ করুন। উইথড্র রিকুয়েষ্টের ৪ ঘণ্টার মধ্যে উইথড্র সম্পন্ন হবে।
             </h1>
           </div>
 

@@ -25,7 +25,7 @@ function Profile() {
                         // const res = await axiosInstance.get(`http://127.0.0.1:8000/auth/user_details/${userId}/`);
                         const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/auth/user_details/${userId}/`);
                         setUser(res.data);
-                        console.log(res.data);
+                        // console.log(res.data);
 
                 } catch (error) {
                         console.log(error);

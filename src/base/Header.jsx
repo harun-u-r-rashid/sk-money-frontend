@@ -13,15 +13,11 @@ import withdrawIcon from '../assets/icons/withdraw.png'
 function Header() {
 
         const access_token = localStorage.getItem('access_token')
-        // console.log(access_token)
-
+    
 
         const decode = jwtDecode(access_token)
         const userId = decode.user_id
-        // console.log(userId)
-
-        // console.log(decode)
-
+    
         const [user, setUser] = useState([])
 
 
@@ -32,10 +28,8 @@ function Header() {
                         // const res = await axiosInstance.get(`http://127.0.0.1:8000/auth/user_details/${userId}/`);
 
                         const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/auth/user_details/${userId}/`);
-
-
                         setUser(res.data);
-                        // console.log(res.data);
+                     
 
                 } catch (error) {
                         console.log(error);
