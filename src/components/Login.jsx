@@ -32,9 +32,9 @@ function Login() {
     try {
 
   
-      const res = await axios.post('http://127.0.0.1:8000/auth/login/', logindata)
+      // const res = await axios.post('http://127.0.0.1:8000/auth/login/', logindata)
 
-      // const res = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/login/', logindata)
+      const res = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/login/', logindata)
 
       const response = res.data
 
