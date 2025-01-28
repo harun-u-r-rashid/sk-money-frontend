@@ -4,16 +4,14 @@ import { useState, useEffect } from 'react'
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 
-// All component import Import
+// All component import
 
 import Login from './components/Login';
 import Register from './components/Register';
-// import Verify from './components/Verify';
 import Package from './components/Package';
 import Dash from './components/Dash';
 import Cashout from './components/Cashout';
 import Deposit from './components/Deposit';
-// import SendMoney from './components/SendMoney';
 import Refer from './components/Refer';
 import Trx from './components/Trx';
 import Profile from './components/Profile';
@@ -27,32 +25,30 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Routes>
-    <Route path="/" element={<Login />} />
- 
-      <Route path="/register/" element={<Register />} />
-      {/* <Route path="/verify/" element={<Verify />} /> */}
-      <Route path="/package/" element={<Package />} />
-      <Route path="/dashboard/" element={<Dash />} />
-      <Route path="/cashout/" element={<Cashout />} />
-      {/* <Route path="/send_money/" element={<SendMoney />} /> */}
-      
-      <Route path="/deposit/" element={<Deposit />} />
-  
-      <Route path="/refer/" element={<Refer/>} />
-      <Route path="/history/" element={<Trx />} />
-      <Route path="/profile/" element={<Profile />} />
+      <Routes>
+        <Route path="/" element={<Login />} />
 
-      <Route path="/help/" element={<Help />} />
-      <Route path="/task/" element={<Task />} />
-      <Route path="/admin_dashboard/" element={<AdminDash />} />
-      <Route path="/update_status/:pk/" element={<UpdateStatus  />} />
-      <Route path="/update_withdraw_status/:pk/" element={<UpdateWithdraw  />} />
-      
-      
-      
-    </Routes>
-  </BrowserRouter>
+        <Route path="/register/" element={<Register />} />
+        <Route path="/package/" element={<Package />} />
+        <Route path="/dashboard/" element={<Dash />} />
+        <Route path="/cashout/" element={<Cashout />} />
+
+        <Route path="/deposit/" element={<Deposit />} />
+
+        <Route path="/refer/" element={<Refer />} />
+        <Route path="/history/" element={<Trx />} />
+        <Route path="/profile/" element={<Profile />} />
+
+        <Route path="/help/" element={<Help />} />
+        <Route path="/task/" element={<Task />} />
+        <Route path="/admin_dashboard/" element={<AdminDash />} />
+        <Route path="/update_status/:pk/" element={<UpdateStatus />} />
+        <Route path="/update_withdraw_status/:pk/" element={<UpdateWithdraw />} />
+
+
+
+      </Routes>
+    </BrowserRouter>
   )
 }
 

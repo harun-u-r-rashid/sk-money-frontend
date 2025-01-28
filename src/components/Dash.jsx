@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import { jwtDecode } from 'jwt-decode';
+
 import { Link } from 'react-router-dom'
 // Image Import
-import banner1 from '../assets/banner/banner1.png'
-import banner2 from '../assets/banner/banner2.png'
-import banner3 from '../assets/banner/banner3.png'
+
 import deposit from '../assets/hero/deposit.png'
 import cashout from '../assets/hero/cashout.png'
 import plan from '../assets/hero/plan.png'
@@ -14,8 +12,10 @@ import transaction from '../assets/hero/transaction.png'
 import help from '../assets/hero/help.png'
 import task from '../assets/hero/task.png'
 import refer from '../assets/hero/refer.png'
+
+
 import Header from '../base/Header';
-import UserData from '../utils/UserData';
+
 import axiosInstance from '../utils/axiosInstance';
 function Dash() {
 
@@ -29,9 +29,9 @@ function Dash() {
         const fetchPartners = async () => {
                 try {
 
-                        // https://sk-money-save-u6f9.onrender.com/
-                        // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/partner_list/`);
-                        const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/partner_list/`);
+
+                        const res = await axiosInstance.get(`package/partner_list/`);
+                    
                         setPartners(res.data);
                         // console.log(res.data);
 
@@ -42,10 +42,10 @@ function Dash() {
 
         const fetchSliderImage = async () => {
                 try {
-                        // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/slider_image_list/`);
-                        const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/slider_image_list/`);
+                        const res = await axiosInstance.get(`package/slider_image_list/`);
+                     
                         setImages(res.data)
-                        // console.log(res.data)
+                  
                 } catch (error) {
                         console.log(error)
                 }

@@ -13,23 +13,21 @@ import withdrawIcon from '../assets/icons/withdraw.png'
 function Header() {
 
         const access_token = localStorage.getItem('access_token')
-    
+
 
         const decode = jwtDecode(access_token)
         const userId = decode.user_id
-    
+
         const [user, setUser] = useState([])
 
 
 
         const fetchUserDetails = async () => {
                 try {
-                        // https://sk-money-save-u6f9.onrender.com/
-                        // const res = await axiosInstance.get(`http://127.0.0.1:8000/auth/user_details/${userId}/`);
 
-                        const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/auth/user_details/${userId}/`);
+                        const res = await axiosInstance.get(`auth/user_details/${userId}/`);
                         setUser(res.data);
-                     
+
 
                 } catch (error) {
                         console.log(error);
@@ -50,7 +48,7 @@ function Header() {
                         if (access_token) {
                                 localStorage.removeItem('access_token');
                                 localStorage.removeItem('refresh_token');
-                          
+
                                 Toast().fire({
                                         icon: "success",
                                         title: "Logout Successful.",
@@ -93,25 +91,25 @@ function Header() {
                                                 class="flex flex-wrap items-center justify-between max-w-screen-xl px-1 mx-auto"
                                         >
                                                 <div class="flex items-center gap-2">
-                                                       
 
-                                                                <div class="flex items-center w-[50px] h-[50px]">
 
-                                                                        <img
-                                                                                src={sklogo} class="rounded-full border  border-black "
-                                                                                alt="Landwind Logo"
-                                                                        />
-                                                                </div>
+                                                        <div class="flex items-center w-[50px] h-[50px]">
 
-                                                       
+                                                                <img
+                                                                        src={sklogo} class="rounded-full border  border-black "
+                                                                        alt="Landwind Logo"
+                                                                />
+                                                        </div>
+
+
                                                 </div>
 
                                                 <div class="flex justify-center items-center  text-white p-2 bg-red-700 rounded-md">
-                                                 <Link to="/admin_dashboard">
+                                                        <Link to="/admin_dashboard">
 
-                                                 <span>Admin Dashboard</span>
-                                                 
-                                                 </Link>
+                                                                <span>Admin Dashboard</span>
+
+                                                        </Link>
                                                 </div>
 
                                                 <div class="flex items-center lg:order-2">

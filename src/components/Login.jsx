@@ -3,8 +3,6 @@ import { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { jwtDecode } from 'jwt-decode';
-import Header from '../base/Header';
 
 // Image Import
 
@@ -12,14 +10,11 @@ import authLogo from '../assets/auth_image/auth.png'
 import bkashLogo from '../assets/regular/bkash.png'
 
 
-// Import
 
 import Toast from '../plugin/Toast'
 
 function Login() {
 
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
   const [logindata, setLoginData] = useState({
@@ -36,30 +31,17 @@ function Login() {
     e.preventDefault()
     try {
 
-      // https://    https://sk-money-save-u6f9.onrender.com/
-      // const res = await axios.post('http://127.0.0.1:8000/auth/login/', logindata)
+  
+      const res = await axios.post('http://127.0.0.1:8000/auth/login/', logindata)
 
-      const res = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/login/', logindata)
+      // const res = await axios.post('https://sk-money-save-u6f9.onrender.com/auth/login/', logindata)
 
       const response = res.data
-      // console.log(res.data)
-
-
-
 
 
       if (res.status === 200) {
         localStorage.setItem('access_token', response.access_token)
         localStorage.setItem('refresh_token', response.refresh_token)
-
-        // const decode = jwtDecode(res.data.access_token)
-        // console.log(decode)
-
-        // const isActive = decode.is_active
-        // const isSuperUser = decode.is_superuser
-        // console.log(decode.is_active)
-        // console.log(decode.is_superuser)
-
 
 
         Toast().fire({

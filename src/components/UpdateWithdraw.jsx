@@ -16,9 +16,8 @@ function UpdateWithdraw() {
     
             try {
     
-                // https://sk-money-save-u6f9.onrender.com/
-                // const res = await axiosInstance.put(`http://127.0.0.1:8000/package/withdraw_status_update/${pk}/`, { status });
-                const res = await axiosInstance.put(`https://sk-money-save-u6f9.onrender.com/package/withdraw_status_update/${pk}/`, { status });
+                const res = await axiosInstance.put(`package/withdraw_status_update/${pk}/`, { status });
+               
                 Toast().fire({
                     icon: "success",
                     title: "Status updated successfully.",

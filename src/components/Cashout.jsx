@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import bkashLogo from '../assets/regular/bkash.png'
 import axiosInstance from '../utils/axiosInstance';
@@ -9,10 +9,9 @@ function Cashout() {
 
   const access_token = localStorage.getItem("access_token")
   const decoded = jwtDecode(access_token)
-  // console.log(decoded)
-  // console.log(decoded)
+
   const userId = decoded.user_id
-  // console.log(userId)
+
 
   const [amount, setAmount] = useState("")
   const [bnumber, setBnumber] = useState("")
@@ -21,10 +20,10 @@ function Cashout() {
 
   const handleWithdraw = async (e) => {
     e.preventDefault();
-    // https://sk-money-save-u6f9.onrender.com/
+
     try {
-      // const res = await axiosInstance.post("http://127.0.0.1:8000/package/withdraw_create/", {
-        const res = await axiosInstance.post("https://sk-money-save-u6f9.onrender.com/package/withdraw_create/", {
+      const res = await axiosInstance.post("package/withdraw_create/", {
+
         user: userId,
         amount: parseInt(amount),
         bkash_number: bnumber,
@@ -79,27 +78,11 @@ function Cashout() {
 
             <h1 class="text-xl">
               <span className='text-blue-600 font-bold'>
-              নোটিশ :
+                নোটিশ :
               </span> মিনিমাম উইথড্র ১৩০০০ টাকা। উইথড্রের রিকুয়েষ্ট পাঠানোর পর, বিকাশ নম্বর, এমাউন্ট এবং ম্যাসেজের মাধ্যমে  নিচের উইথড্র ফর্ম পূরণ করুন। উইথড্র রিকুয়েষ্টের ৪ ঘণ্টার মধ্যে উইথড্র সম্পন্ন হবে।
             </h1>
           </div>
 
-          {/* <div class="max-w-7xl mx-auto py-6 border text-center mt-5 rounded-2xl bg-white ">
-                        
-                        <h1 class="text-2xl font-bold">
-                           Balance: <span class="text-[rgb(12,12,232)]"> 100 BDT</span>
-                        </h1>
-                   </div> */}
-
-          {/* <div class="max-w-7xl mx-auto py-6 border text-center mt-5 rounded-2xl bg-white">
-                        <h1 class="text-center text-xl font-semibold mt-1">Select Payment method</h1>
-                        <div
-                          class="mt-2 w-[100px] mx-auto h-auto border-[5px] border-gray p-2 rounded-lg"
-                        >
-                          <img src={bkashLogo} alt="" />
-                        </div>
-                      
-                     </div> */}
 
           <div class="max-w-7xl mx-auto py-6 border  mt-5 rounded-2xl bg-white">
 
@@ -148,34 +131,17 @@ function Cashout() {
 
           </div>
 
-                    <div class="max-w-7xl mx-auto py-4 border text-center mt-2 rounded-2xl bg-white">
-                      <h1 class="text-center text-xl font-semibold mt-1">We use</h1>
-                      <div
-                        class="mt-2 w-[100px] mx-auto h-auto border-[5px] border-gray p-2 rounded-lg"
-                      >
-                        <img src={bkashLogo} alt="" />
-                      </div>
-          
-                    </div>
+          <div class="max-w-7xl mx-auto py-4 border text-center mt-2 rounded-2xl bg-white">
+            <h1 class="text-center text-xl font-semibold mt-1">We use</h1>
+            <div
+              class="mt-2 w-[100px] mx-auto h-auto border-[5px] border-gray p-2 rounded-lg"
+            >
+              <img src={bkashLogo} alt="" />
+            </div>
 
-
-
-
-
-
-
-
-
-
-
-
+          </div>
 
         </section>
-
-
-
-
-
 
       </main>
     </>

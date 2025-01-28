@@ -4,11 +4,6 @@ import axiosInstance from '../utils/axiosInstance';
 import {Link} from 'react-router-dom'
 
 
-import p1 from '../assets/package/plan1.png'
-import p2 from '../assets/package/plan2.png'
-import p3 from '../assets/package/plan3.png'
-
-// import useAxios from '../utils/useAxios'
 
 
 
@@ -19,12 +14,11 @@ function Package() {
   const fetchPackages = async () => {
     try {
 
-      // https://sk-money-save-u6f9.onrender.com/
-      // const res = await axiosInstance.get(`http://127.0.0.1:8000/package/list/`);
-            const res = await axiosInstance.get(`https://sk-money-save-u6f9.onrender.com/package/list/`);
+    
+      const res = await axiosInstance.get(`package/list/`);
+     
       setPackages(res.data);
-      // console.log(res.data);
-
+     
     } catch (error) {
       console.log(error);
     }

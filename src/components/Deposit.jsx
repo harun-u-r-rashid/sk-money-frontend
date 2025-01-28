@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import bkashLogo from '../assets/regular/bkash.png'
 import send_money from '../assets/regular/send_money.png'
-import { Link, UNSAFE_ErrorResponseImpl } from 'react-router-dom'
+import { Link, } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode';
-import axios from 'axios'
+
 import Toast from '../plugin/Toast';
 import axiosInstance from '../utils/axiosInstance';
 function Deposit() {
@@ -11,9 +11,8 @@ function Deposit() {
   const access_token = localStorage.getItem("access_token")
   const decoded = jwtDecode(access_token)
   console.log(decoded)
-  // console.log(decoded)
+
   const userId = decoded.user_id
-  console.log(userId)
 
   const [amount, setAmount] = useState("")
   const [tranId, setTranId] = useState("")
@@ -23,10 +22,10 @@ function Deposit() {
 
   const handleDeposit = async (e) => {
     e.preventDefault();
-    // https://sk-money-save-u6f9.onrender.com/
+
     try {
-      // const res = await axiosInstance.post("http://127.0.0.1:8000/package/deposit_create/", {
-        const res = await axiosInstance.post("https://sk-money-save-u6f9.onrender.com/package/deposit_create/", {
+      const res = await axiosInstance.post("package/deposit_create/", {
+      
         user: userId,
         amount: parseInt(amount),
         transaction_id: tranId,
@@ -104,13 +103,7 @@ function Deposit() {
             </div>
           </div>
 
-          {/* <div class="max-w-7xl mx-auto py-6 border text-center mt-5 rounded-2xl bg-white ">
-
-            <h1 class="text-2xl font-bold">
-              Balance: <span class="text-[rgb(12,12,232)]"> {decoded.balance}$</span>
-            </h1>
-          </div> */}
-
+ 
 
           <div class="max-w-7xl mx-auto py-6 border text-center mt-5 rounded-2xl bg-white ">
 
@@ -167,17 +160,7 @@ function Deposit() {
             </p>
 
 
-            {/* <div class="max-w-5xl mx-auto grid grid-cols-4 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-9 gap-1 px-2 sm:px-4">
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">500</h1>
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">1000</h1>
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">2000</h1>
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">3000</h1>
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">5000</h1>
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">9000</h1>
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">15000</h1>
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">18000</h1>
-                            <h1 class="amount-btn border p-1 text-center text-[rgb(29,78,216)] font-semibold border-[rgb(29,78,216)] rounded-md cursor-pointer">25000</h1>
-                        </div>   */}
+        
           </div>
 
 

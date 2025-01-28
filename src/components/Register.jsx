@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
@@ -51,12 +51,11 @@ function Register() {
     } else {
 
       try {
-        // console.log("Request Payload: ", formdata); 
-        // https://sk-money-save-u6f9.onrender.com/
-        // const res = await axios.post("http://127.0.0.1:8000/auth/register/", formdata);
-        const res = await axios.post("https://sk-money-save-u6f9.onrender.com/auth/register/", formdata);
+
+        const res = await axios.post("http://127.0.0.1:8000/auth/register/", formdata);
+        // const res = await axios.post("https://sk-money-save-u6f9.onrender.com/auth/register/", formdata);
         const response = res.data;
-        // console.log("Response: ", response);
+
 
         if (res.status === 201) {
           Toast().fire({
@@ -203,3 +202,4 @@ function Register() {
 }
 
 export default Register;
+
