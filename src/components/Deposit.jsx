@@ -17,6 +17,8 @@ function Deposit() {
 
   const [amount, setAmount] = useState("")
   const [tranId, setTranId] = useState("")
+  const [name, setName] = useState("")
+  const [number, setNumber] = useState("")
 
 
   const handleDeposit = async (e) => {
@@ -27,12 +29,17 @@ function Deposit() {
         const res = await axiosInstance.post("https://sk-money-save-u6f9.onrender.com/package/deposit_create/", {
         user: userId,
         amount: parseInt(amount),
-        tran_id: tranId
+        transaction_id: tranId,
+        package_name: name,
+        send_number: number
+
       });
 
       if (res.status === 201) {
         setAmount("");
         setTranId("");
+        setName("");
+        setNumber("");
         Toast().fire({
           icon: "success",
           title: res.data.message,
@@ -77,10 +84,10 @@ function Deposit() {
         <section class=" mx-2 pb-3">
           <div class="max-w-7xl mx-auto py-6 border text-center mt-5 rounded-2xl bg-white ">
 
-            <h1 class="text-2xl px-1">
+            <h1 class="text-xl">
               <span className='text-blue-600 font-bold'>
                 Notice :
-              </span> Minimum Deposit <span cla>100$</span>
+              </span> মিনিমাম ডিপোজিট ১৩০০০ টাকা। নির্ধারিত প্যাকেজের জন্য সেন্ড মানি করার পর, বিকাশ নম্বর এবং ট্রানজেকশন আইডি দিয়ে ডিপোজিট ফর্ম পূরণ করুন।
             </h1>
           </div>
 
@@ -118,14 +125,24 @@ function Deposit() {
 
             <form action="" onSubmit={handleDeposit}>
 
-              <div class="px-6 mb-3">
-                <label className='font-semibold' htmlFor="">Amount</label>
-                <input id="amountInput" type="text" value={amount} onChange={(e) => setAmount(e.target.value)} class="border border-black w-full p-2 text-black rounded-xl" placeholder="Amount" />
+            <div class="px-6 mb-3">
+                <label className='font-semibold' htmlFor="">Package Name</label>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} class="border border-black w-full p-2 text-black rounded-xl" placeholder="Enter package name" />
               </div>
 
-              <div class="px-6">
+              <div class="px-6 mb-3">
+                <label className='font-semibold' htmlFor="">Amount</label>
+                <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} class="border border-black w-full p-2 text-black rounded-xl" placeholder="Amount" />
+              </div>
+
+              <div class="px-6 mb-3">
+                <label className='font-semibold' htmlFor="">Bkash Number</label>
+                <input type="text" value={number} onChange={(e) => setNumber(e.target.value)} class="border border-black w-full p-2 text-black rounded-xl" placeholder="Enter bkash number" />
+              </div>
+
+              <div class="px-6 mb-3">
                 <label className='font-semibold' htmlFor="">Transaction ID</label>
-                <input id="amountInput" type="text" value={tranId} onChange={(e) => setTranId(e.target.value)} class="border border-black w-full p-2 text-black rounded-xl" placeholder="Transaction ID" />
+                <input  type="text" value={tranId} onChange={(e) => setTranId(e.target.value)} class="border border-black w-full p-2 text-black rounded-xl" placeholder="Transaction ID" />
               </div>
 
 
@@ -133,7 +150,7 @@ function Deposit() {
                 {/* <Link to='/history'>
            
             </Link> */}
-                <div className='px-6 mt-3'>
+                <div className='px-6 mt-10'>
                   <button
 
                     class="flex w-full justify-center rounded-xl  border border-transparent bg-[rgb(33,54,68)] py-3 text-MD  font-bold text-white shadow-sm hover:bg-opacity-90"
